@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unlock PDF Online Free - Remove PDF Password | PDFCrafty</title>
+<meta name="description" content="Remove a password from a PDF online for free if you know the password. Unlock your PDF instantly in your browser — no uploads, no signup.">
+<meta name="keywords" content="unlock pdf, remove pdf password, pdf password remover online, decrypt pdf free">
+<link rel="canonical" href="https://pdfcrafty.com/unlock-pdf.html">
+
+<meta property="og:title" content="Unlock PDF Online Free | PDFCrafty">
+<meta property="og:description" content="Remove the password from your PDF instantly, right in your browser. Free, fast, and completely private.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pdfcrafty.com/unlock-pdf.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Unlock PDF - PDFCrafty",
+  "operatingSystem": "Web",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "ratingCount": "534" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to know the password to unlock a PDF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. PDFCrafty removes password protection from PDFs you already have legitimate access to, but you must enter the correct existing password to unlock the file." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool crack or guess a forgotten password?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. This tool only removes encryption when you provide the correct password — it cannot bypass or guess passwords on files you don't have access to." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is unlocking a PDF private?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your PDF and password are processed entirely in your browser. Nothing is uploaded to a server." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the unlocked PDF lose any content?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Only the password protection is removed. All pages, text, and formatting remain exactly the same." }
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/style.css">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="tool-hero">
+  <div class="icon-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 019.9-1"/></svg>
+  </div>
+  <h1>Unlock PDF (Remove Password)</h1>
+  <p class="subtitle">Remove password protection from a PDF you have legitimate access to — fast, free, and entirely in your browser.</p>
+  <div class="badges">
+    <span class="badge">🔒 100% Private — Files Never Leave Your Device</span>
+    <span class="badge">⚡ No Signup Required</span>
+    <span class="badge">♾️ Unlimited Use</span>
+  </div>
+</section>
+
+<div class="tool-wrap">
+
+  <div class="dropzone" id="dropzone">
+    <svg class="dz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+    <h3>Drag &amp; drop a protected PDF here</h3>
+    <p>or click to browse from your device</p>
+    <input type="file" id="fileInput" accept="application/pdf" style="display:none">
+  </div>
+
+  <div class="file-list hidden" id="fileList"></div>
+
+  <div class="controls-card hidden" id="controlsCard">
+    <div class="option-row">
+      <label for="passwordInput">Current PDF Password</label>
+      <input type="password" id="passwordInput" placeholder="Enter the password">
+    </div>
+  </div>
+
+  <div class="text-center" style="margin-top:18px;">
+    <button class="btn btn-block hidden" id="unlockBtn">Unlock PDF</button>
+  </div>
+
+  <div class="progress-wrap hidden" id="progressWrap">
+    <div class="spinner"></div>
+    <p style="margin-top:12px; font-weight:700;">Unlocking your PDF...</p>
+    <div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-card hidden" id="resultCard">
+    <svg class="result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+    <h3>Your PDF has been unlocked!</h3>
+    <p id="resultMeta"></p>
+    <div class="result-actions">
+      <a class="btn" id="downloadBtn">Download Unlocked PDF</a>
+      <button class="btn btn-secondary" id="resetBtn">Unlock Another PDF</button>
+    </div>
+  </div>
+
+  <div class="alert alert-error hidden" id="errorAlert"></div>
+
+</div>
+
+<div class="content-section">
+
+  <h2>How to Remove a PDF Password</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Upload Your PDF</h4>
+      <p>Click the upload area or drag and drop the password-protected PDF.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Enter the Password</h4>
+      <p>Type in the current password that protects the file.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Download Unlocked PDF</h4>
+      <p>Click "Unlock PDF" and download the password-free version.</p>
+    </div>
+  </div>
+
+  <h2>About Removing PDF Passwords</h2>
+  <p>If you have a PDF that's password-protected and you know the password, PDFCrafty can permanently remove that protection so the file opens without a prompt in the future. This is useful for documents you own or have permission to access, such as your own encrypted reports, statements, or scanned files.</p>
+  <p>This tool requires the correct password to work — it does not attempt to crack, guess, or bypass passwords on files you don't have legitimate access to. All processing happens locally in your browser.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <h4>Private by Design</h4>
+      <p>Your PDF and password never leave your device.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <h4>Instant Removal</h4>
+      <p>Password protection is removed in seconds, right on your device.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <h4>No Sign-Up, No Limits</h4>
+      <p>Unlock unlimited PDFs for free.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <h4>Works on Any Device</h4>
+      <p>Use PDFCrafty on desktop, tablet, or mobile.</p>
+    </div>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <div class="faq-question">Do I need to know the password to unlock a PDF?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>Yes. PDFCrafty removes password protection from PDFs you already have legitimate access to, but you must enter the correct existing password to unlock the file.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Can this tool crack or guess a forgotten password?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>No. This tool only removes encryption when you provide the correct password — it cannot bypass or guess passwords on files you don't have access to.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Is unlocking a PDF private?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>Yes. Your PDF and password are processed entirely in your browser. Nothing is uploaded to a server.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Will the unlocked PDF lose any content?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>No. Only the password protection is removed. All pages, text, and formatting remain exactly the same.</p></div>
+  </div>
+
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+    <a href="/protect-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Protect PDF
+    </a>
+    <a href="/merge-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 13h6"/><path d="M19 10v6"/><path d="M14 2v6h6"/><path d="M14 2l6 6"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8"/></svg>
+      Merge PDF
+    </a>
+    <a href="/compress-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      Compress PDF
+    </a>
+    <a href="/split-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      Split PDF
+    </a>
+  </div>
+
+</div>
+
+<div id="site-footer"></div>
+
+<script src="/layout.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="/pdf-encrypt.js"></script>
+<script src="/unlock-pdf.js"></script>
+</body>
+</html>

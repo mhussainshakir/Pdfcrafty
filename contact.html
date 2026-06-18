@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact PDFCrafty</title>
+<meta name="description" content="Get in touch with the PDFCrafty team for support, feedback, or questions about our free online PDF tools.">
+<link rel="canonical" href="https://pdfcrafty.com/contact.html">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="content-section" style="padding-top:48px;">
+  <h1 style="font-size:2.2rem; font-weight:800; margin-bottom:16px;">Contact Us</h1>
+  <p>Have a question, found a bug, or want to suggest a new tool? We'd love to hear from you.</p>
+
+  <div class="controls-card" style="max-width:600px; margin-top:24px;">
+    <h4 style="margin-bottom:16px;">Send us a message</h4>
+    <div class="option-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <label for="nameInput">Name</label>
+      <input type="text" id="nameInput" placeholder="Your name" style="width:100%;">
+    </div>
+    <div class="option-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <label for="emailInput">Email</label>
+      <input type="text" id="emailInput" placeholder="you@example.com" style="width:100%;">
+    </div>
+    <div class="option-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <label for="messageInput">Message</label>
+      <textarea id="messageInput" rows="5" placeholder="How can we help?" style="width:100%; padding:8px 12px; border:1.5px solid var(--border); border-radius:6px; font-family:inherit; font-size:0.9rem;"></textarea>
+    </div>
+    <button class="btn btn-block" id="sendBtn" style="margin-top:12px;">Send Message</button>
+    <p id="formNote" style="font-size:0.82rem; margin-top:10px; text-align:center;"></p>
+  </div>
+
+  <h2 style="margin-top:48px;">Other Ways to Reach Us</h2>
+  <p>Email: <a href="mailto:support@pdfcrafty.com">support@pdfcrafty.com</a></p>
+</div>
+
+<div id="site-footer"></div>
+<script src="/layout.js"></script>
+<script>
+  document.getElementById("sendBtn").addEventListener("click", () => {
+    const name = document.getElementById("nameInput").value.trim();
+    const email = document.getElementById("emailInput").value.trim();
+    const message = document.getElementById("messageInput").value.trim();
+    const note = document.getElementById("formNote");
+
+    if (!name || !email || !message) {
+      note.textContent = "Please fill in all fields.";
+      note.style.color = "var(--danger)";
+      return;
+    }
+    const subject = encodeURIComponent("PDFCrafty Contact: " + name);
+    const body = encodeURIComponent(message + "\n\nFrom: " + name + " (" + email + ")");
+    window.location.href = `mailto:support@pdfcrafty.com?subject=${subject}&body=${body}`;
+    note.textContent = "Opening your email client...";
+    note.style.color = "var(--text-light)";
+  });
+</script>
+</body>
+</html>

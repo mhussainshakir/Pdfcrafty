@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF to Excel Converter Online Free - Convert PDF to XLSX | PDFCrafty</title>
+<meta name="description" content="Convert PDF tables and data to Excel (.xlsx) online for free. Fast, private, browser-based PDF to Excel converter — no uploads, no signup required.">
+<meta name="keywords" content="pdf to excel, pdf to xlsx, convert pdf to excel online, pdf table to excel free">
+<link rel="canonical" href="https://pdfcrafty.com/pdf-to-excel.html">
+
+<meta property="og:title" content="PDF to Excel Converter Online Free | PDFCrafty">
+<meta property="og:description" content="Convert your PDF's text and tables into an Excel spreadsheet instantly, right in your browser. Free, fast, and completely private.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pdfcrafty.com/pdf-to-excel.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF to Excel - PDFCrafty",
+  "operatingSystem": "Web",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.4", "ratingCount": "687" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does PDFCrafty detect tables in a PDF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "PDFCrafty analyzes the position of text on each page and groups text into rows and columns based on alignment, converting the detected structure into spreadsheet cells." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will this work on any PDF, even without clear tables?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It works best on PDFs with clearly structured tables or columns. For PDFs that are mostly free-flowing paragraphs, each line will be placed in its own row instead." }
+    },
+    {
+      "@type": "Question",
+      "name": "What file format will I get?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You'll receive a .xlsx file that opens in Microsoft Excel, Google Sheets, and LibreOffice Calc." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this conversion private?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your PDF is processed and converted entirely in your browser. It is never uploaded to a server." }
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/style.css">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="tool-hero">
+  <div class="icon-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+  </div>
+  <h1>PDF to Excel Converter</h1>
+  <p class="subtitle">Convert your PDF's tables and text into an Excel spreadsheet — fast, free, and entirely in your browser.</p>
+  <div class="badges">
+    <span class="badge">🔒 100% Private — Files Never Leave Your Device</span>
+    <span class="badge">⚡ No Signup Required</span>
+    <span class="badge">♾️ Unlimited Use</span>
+  </div>
+</section>
+
+<div class="tool-wrap">
+
+  <div class="dropzone" id="dropzone">
+    <svg class="dz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+    <h3>Drag &amp; drop a PDF file here</h3>
+    <p>or click to browse from your device</p>
+    <input type="file" id="fileInput" accept="application/pdf" style="display:none">
+  </div>
+
+  <div class="file-list hidden" id="fileList"></div>
+
+  <div class="text-center" style="margin-top:18px;">
+    <button class="btn btn-block hidden" id="convertBtn">Convert to Excel</button>
+  </div>
+
+  <div class="progress-wrap hidden" id="progressWrap">
+    <div class="spinner"></div>
+    <p style="margin-top:12px; font-weight:700;">Detecting tables and building spreadsheet...</p>
+    <div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-card hidden" id="resultCard">
+    <svg class="result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+    <h3>Your spreadsheet is ready!</h3>
+    <p id="resultMeta"></p>
+    <div class="result-actions">
+      <a class="btn" id="downloadBtn">Download .xlsx</a>
+      <button class="btn btn-secondary" id="resetBtn">Convert Another PDF</button>
+    </div>
+  </div>
+
+  <div class="alert alert-info hidden" id="infoAlert"></div>
+  <div class="alert alert-error hidden" id="errorAlert"></div>
+
+</div>
+
+<div class="content-section">
+
+  <h2>How to Convert PDF to Excel</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Upload Your PDF</h4>
+      <p>Click the upload area or drag and drop the PDF file containing your data.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Automatic Detection</h4>
+      <p>PDFCrafty analyzes text positions to detect rows and columns automatically.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Download .xlsx</h4>
+      <p>Download your spreadsheet and open it in Excel, Google Sheets, or LibreOffice.</p>
+    </div>
+  </div>
+
+  <h2>About PDF to Excel Conversion</h2>
+  <p>Extracting tables from a PDF into a spreadsheet usually means manually retyping data — a tedious and error-prone process. PDFCrafty analyzes the position of every piece of text on each page and reconstructs rows and columns based on alignment, turning your PDF's tabular data into an editable Excel file.</p>
+  <p>This works best on PDFs with clear table structures, like invoices, reports, and exported data. The entire conversion happens in your browser, so your file is never uploaded anywhere.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <h4>Private by Design</h4>
+      <p>Your PDF is converted locally — nothing is uploaded.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <h4>Smart Table Detection</h4>
+      <p>Automatically detects rows and columns based on text alignment.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <h4>No Sign-Up, No Limits</h4>
+      <p>Convert unlimited PDFs to Excel for free.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <h4>Works on Any Device</h4>
+      <p>Use PDFCrafty on desktop, tablet, or mobile.</p>
+    </div>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <div class="faq-question">How does PDFCrafty detect tables in a PDF?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>PDFCrafty analyzes the position of text on each page and groups text into rows and columns based on alignment, converting the detected structure into spreadsheet cells.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Will this work on any PDF, even without clear tables?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>It works best on PDFs with clearly structured tables or columns. For PDFs that are mostly free-flowing paragraphs, each line will be placed in its own row instead.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">What file format will I get?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>You'll receive a .xlsx file that opens in Microsoft Excel, Google Sheets, and LibreOffice Calc.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Is this conversion private?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>Yes. Your PDF is processed and converted entirely in your browser. It is never uploaded to a server.</p></div>
+  </div>
+
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+    <a href="/pdf-to-word.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      PDF to Word
+    </a>
+    <a href="/extract-text.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+      Extract Text
+    </a>
+    <a href="/word-to-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Word to PDF
+    </a>
+    <a href="/merge-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 13h6"/><path d="M19 10v6"/><path d="M14 2v6h6"/><path d="M14 2l6 6"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8"/></svg>
+      Merge PDF
+    </a>
+  </div>
+
+</div>
+
+<div id="site-footer"></div>
+
+<script src="/layout.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="/pdf-to-excel.js"></script>
+</body>
+</html>

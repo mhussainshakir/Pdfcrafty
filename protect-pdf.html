@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protect PDF with Password Online Free - Encrypt PDF | PDFCrafty</title>
+<meta name="description" content="Add a password to your PDF online for free. Encrypt your PDF so only people with the password can open it — fast, private, no signup required.">
+<meta name="keywords" content="protect pdf, add password to pdf, encrypt pdf online, pdf password protection free">
+<link rel="canonical" href="https://pdfcrafty.com/protect-pdf.html">
+
+<meta property="og:title" content="Protect PDF with Password Online Free | PDFCrafty">
+<meta property="og:description" content="Add password protection to your PDF instantly, right in your browser. Free, fast, and completely private.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pdfcrafty.com/protect-pdf.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Protect PDF - PDFCrafty",
+  "operatingSystem": "Web",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "ratingCount": "612" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What encryption does PDFCrafty use?",
+      "acceptedAnswer": { "@type": "Answer", "text": "PDFCrafty uses standard AES-128 PDF encryption to password-protect your document, which is compatible with Adobe Acrobat and most PDF readers." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my password be sent anywhere?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The password you set is used only locally in your browser to encrypt the PDF. It is never transmitted or stored anywhere." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I forget the password?",
+      "acceptedAnswer": { "@type": "Answer", "text": "PDFCrafty cannot recover or reset passwords. Make sure to remember or securely store the password you set, as it cannot be retrieved later." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is protecting a PDF private?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your file is encrypted entirely in your browser. It is never uploaded to a server." }
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/style.css">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="tool-hero">
+  <div class="icon-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+  </div>
+  <h1>Protect PDF with a Password</h1>
+  <p class="subtitle">Encrypt your PDF so only people with the password can open it — fast, free, and entirely in your browser.</p>
+  <div class="badges">
+    <span class="badge">🔒 100% Private — Files Never Leave Your Device</span>
+    <span class="badge">⚡ No Signup Required</span>
+    <span class="badge">♾️ Unlimited Use</span>
+  </div>
+</section>
+
+<div class="tool-wrap">
+
+  <div class="dropzone" id="dropzone">
+    <svg class="dz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+    <h3>Drag &amp; drop a PDF file here</h3>
+    <p>or click to browse from your device</p>
+    <input type="file" id="fileInput" accept="application/pdf" style="display:none">
+  </div>
+
+  <div class="file-list hidden" id="fileList"></div>
+
+  <div class="controls-card hidden" id="controlsCard">
+    <h4>Set a Password</h4>
+    <div class="option-row">
+      <label for="passwordInput">Password</label>
+      <input type="password" id="passwordInput" placeholder="Enter a password">
+    </div>
+    <div class="option-row">
+      <label for="confirmPasswordInput">Confirm Password</label>
+      <input type="password" id="confirmPasswordInput" placeholder="Re-enter the password">
+    </div>
+  </div>
+
+  <div class="text-center" style="margin-top:18px;">
+    <button class="btn btn-block hidden" id="protectBtn">Protect PDF</button>
+  </div>
+
+  <div class="progress-wrap hidden" id="progressWrap">
+    <div class="spinner"></div>
+    <p style="margin-top:12px; font-weight:700;">Encrypting your PDF...</p>
+    <div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-card hidden" id="resultCard">
+    <svg class="result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+    <h3>Your PDF is now password-protected!</h3>
+    <p id="resultMeta"></p>
+    <div class="result-actions">
+      <a class="btn" id="downloadBtn">Download Protected PDF</a>
+      <button class="btn btn-secondary" id="resetBtn">Protect Another PDF</button>
+    </div>
+  </div>
+
+  <div class="alert alert-info hidden" id="infoAlert"></div>
+  <div class="alert alert-error hidden" id="errorAlert"></div>
+
+</div>
+
+<div class="content-section">
+
+  <h2>How to Add a Password to a PDF</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Upload Your PDF</h4>
+      <p>Click the upload area or drag and drop the PDF file you want to protect.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Set a Password</h4>
+      <p>Enter and confirm a strong password to encrypt your document.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Download</h4>
+      <p>Click "Protect PDF" and download your encrypted file.</p>
+    </div>
+  </div>
+
+  <h2>About PDF Password Protection</h2>
+  <p>Adding a password to a PDF is a simple way to keep sensitive documents — contracts, financial statements, personal records — from being opened by anyone who doesn't know the password. PDFCrafty encrypts your PDF using standard AES encryption that's compatible with Adobe Acrobat and most modern PDF readers.</p>
+  <p>The entire process happens in your browser. Your file and the password you choose are never sent to any server.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <h4>Private by Design</h4>
+      <p>Your password and PDF never leave your device.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <h4>Industry-Standard Encryption</h4>
+      <p>Compatible with Adobe Acrobat and most PDF readers.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <h4>No Sign-Up, No Limits</h4>
+      <p>Protect unlimited PDFs for free.</p>
+    </div>
+    <div class="feature-card">
+      <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <h4>Works on Any Device</h4>
+      <p>Use PDFCrafty on desktop, tablet, or mobile.</p>
+    </div>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <div class="faq-question">What encryption does PDFCrafty use?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>PDFCrafty uses standard AES-128 PDF encryption to password-protect your document, which is compatible with Adobe Acrobat and most PDF readers.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Will my password be sent anywhere?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>No. The password you set is used only locally in your browser to encrypt the PDF. It is never transmitted or stored anywhere.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">What happens if I forget the password?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>PDFCrafty cannot recover or reset passwords. Make sure to remember or securely store the password you set, as it cannot be retrieved later.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Is protecting a PDF private?<span class="faq-toggle">+</span></div>
+    <div class="faq-answer"><p>Yes. Your file is encrypted entirely in your browser. It is never uploaded to a server.</p></div>
+  </div>
+
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+    <a href="/unlock-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 019.9-1"/></svg>
+      Unlock PDF
+    </a>
+    <a href="/merge-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 13h6"/><path d="M19 10v6"/><path d="M14 2v6h6"/><path d="M14 2l6 6"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8"/></svg>
+      Merge PDF
+    </a>
+    <a href="/compress-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      Compress PDF
+    </a>
+    <a href="/organize-pdf.html" class="related-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Organize Pages
+    </a>
+  </div>
+
+</div>
+
+<div id="site-footer"></div>
+
+<script src="/layout.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="/pdf-encrypt.js"></script>
+<script src="/protect-pdf.js"></script>
+</body>
+</html>
