@@ -35,28 +35,76 @@
   </div>
 
   <h2 style="margin-top:48px;">Other Ways to Reach Us</h2>
-  <p>Email: <a href="mailto:support@pdfcrafty.com">support@pdfcrafty.com</a></p>
+  <p>Email: <a href="mailto:shakirmhussain12@gmail.com">shakirmhussain12@gmail.com</a></p>
 </div>
 
 <div id="site-footer"></div>
 <script src="/layout.js"></script>
-<script>
-  document.getElementById("sendBtn").addEventListener("click", () => {
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDpZrViTMc4iaerhWPUcCtuoXuigL3axl8",
+    authDomain: "pdf-crafty.firebaseapp.com",
+    projectId: "pdf-crafty",
+    storageBucket: "pdf-crafty.firebasestorage.app",
+    messagingSenderId: "736090907986",
+    appId: "1:736090907986:web:4aa3dc716c4235c481068b"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const sendBtn = document.getElementById("sendBtn");
+  const note = document.getElementById("formNote");
+
+  sendBtn.addEventListener("click", async () => {
     const name = document.getElementById("nameInput").value.trim();
     const email = document.getElementById("emailInput").value.trim();
     const message = document.getElementById("messageInput").value.trim();
-    const note = document.getElementById("formNote");
 
     if (!name || !email || !message) {
       note.textContent = "Please fill in all fields.";
       note.style.color = "var(--danger)";
       return;
     }
-    const subject = encodeURIComponent("PDFCrafty Contact: " + name);
-    const body = encodeURIComponent(message + "\n\nFrom: " + name + " (" + email + ")");
-    window.location.href = `mailto:support@pdfcrafty.com?subject=${subject}&body=${body}`;
-    note.textContent = "Opening your email client...";
-    note.style.color = "var(--text-light)";
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      note.textContent = "Please enter a valid email address.";
+      note.style.color = "var(--danger)";
+      return;
+    }
+
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Sending...";
+    note.textContent = "";
+
+    try {
+      await addDoc(collection(db, "contactMessages"), {
+        name,
+        email,
+        message,
+        createdAt: serverTimestamp(),
+        page: window.location.href,
+        userAgent: navigator.userAgent
+      });
+
+      document.getElementById("nameInput").value = "";
+      document.getElementById("emailInput").value = "";
+      document.getElementById("messageInput").value = "";
+      note.textContent = "Message sent! We'll get back to you soon.";
+      note.style.color = "var(--success)";
+    } catch (err) {
+      console.error("Error sending message:", err);
+      note.textContent = "Something went wrong. Please try again or email us directly.";
+      note.style.color = "var(--danger)";
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.textContent = "Send Message";
+    }
   });
 </script>
 </body>
